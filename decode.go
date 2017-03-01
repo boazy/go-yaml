@@ -441,8 +441,9 @@ func (d *decoder) scalar(n *node, out reflect.Value) (good bool) {
 			}
 			resolved = string(data)
 		} else if d.options.StrictBool && tag == yaml_BOOL_TAG {
-			if resolved != "true" && resolved != "false" {
+			if n.value != "true" && n.value != "false" {
 				tag = yaml_STR_TAG
+				resolved = n.value
 			}
 		}
 	}
